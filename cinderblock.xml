@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+    name="Serial"
+    id="com.chordedconstructions.cinder-serial"
+    git="https://github.com/pizthewiz/Cinder-Serial.git"
+    author="Jean-Pierre Mouilleseaux, William Woodall, John Harrison"
+    summary="Alternate serial handling"
+    version="1.2.1"
+    url="https://github.com/pizthewiz/Cinder-Serial"
+    library="http://wjwwood.github.com/serial/"
+    >
+    <supports os="macosx" />
+    <supports os="msw" />
+
+    <header>include/Cinder-Serial.h</header>
+    <header>include/SerialDevice.h</header>
+    <source>src/SerialDevice.cpp</source>
+
+    <headerPattern>lib/serial/include/serial/impl/*.h</headerPattern>
+    <headerPattern>lib/serial/include/serial/*.h</headerPattern>
+    <sourcePattern>lib/serial/src/impl/list_ports/*.cc</sourcePattern>
+    <sourcePattern>lib/serial/src/impl/*.cc</sourcePattern>
+    <sourcePattern>lib/serial/src/*.cc</sourcePattern>
+    <includePath system="true">lib/serial/include/</includePath>
+
+    <copyExclude>samples</copyExclude>
+</block>
+</cinder>

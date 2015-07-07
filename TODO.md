@@ -1,8 +1,6 @@
 
 ## NOW
 [ ] Cinder <-> Arduino sample
-[ ] Find `SerialPort` with name containing `std::string`
-[ ] Find `SerialPort` with name matching `std::regex`
 [ ] Fully comment header
 
 ## LATER
@@ -10,3 +8,4 @@
 [ ] read to `BufferRed` and write from `BufferRef`
 [ ] SLIP encode/decode
 [ ] COBS encode/decode
+[ ] wrap exceptions?

@@ -12,6 +12,7 @@
 
 #include <string>
 #include <vector>
+#include <regex>
 
 #include "serial.h"
 
@@ -58,6 +59,7 @@ enum class FlowControl {
 class SerialPort : public std::enable_shared_from_this<SerialPort> {
 public:
     static const std::vector<SerialPortRef>& getPorts(bool forceRefresh = false);
+    static SerialPortRef findPortByNameMatching(const std::regex& pattern, bool forceRefresh = false);
 
     ~SerialPort() {}
 
@@ -77,23 +79,23 @@ private:
 
 class SerialDevice : public std::enable_shared_from_this<SerialDevice> {
 public:
-    static SerialDeviceRef create(const SerialPortRef port, const uint32_t baudRate, const Timeout timeout = TimeoutDefault, const DataBits dataBits = DataBits::Eight, const Parity parity = Parity::None, const StopBits stopBits = StopBits::One, const FlowControl flowControl = FlowControl::None);
-    static SerialDeviceRef create(const std::string portName, const uint32_t baudRate, const Timeout timeout = TimeoutDefault, const DataBits dataBits = DataBits::Eight, const Parity parity = Parity::None, const StopBits stopBits = StopBits::One, const FlowControl flowControl = FlowControl::None);
+    static SerialDeviceRef create(const SerialPortRef port, uint32_t baudRate, const Timeout timeout = TimeoutDefault, DataBits dataBits = DataBits::Eight, Parity parity = Parity::None, StopBits stopBits = StopBits::One, FlowControl flowControl = FlowControl::None);
+    static SerialDeviceRef create(const std::string& portName, uint32_t baudRate, const Timeout timeout = TimeoutDefault, DataBits dataBits = DataBits::Eight, Parity parity = Parity::None, StopBits stopBits = StopBits::One, FlowControl flowControl = FlowControl::None);
     ~SerialDevice();
 
     const std::string getPortName() const;
-    const uint32_t getBaudRate() const;
+    uint32_t getBaudRate() const;
     const Timeout getTimeout() const;
-    const DataBits getDataBits() const;
-    const Parity getParity() const;
-    const StopBits getStopBits() const;
-    const FlowControl getFlowControl() const;
+    DataBits getDataBits() const;
+    Parity getParity() const;
+    StopBits getStopBits() const;
+    FlowControl getFlowControl() const;
 
     bool isOpen() const;
     void open();
     void close();
 
-    size_t availableBytes() const;
+    size_t getNumberOfAvailableBytes() const;
     size_t readBytes(uint8_t* buffer, size_t size);
     size_t writeBytes(const uint8_t* buffer, size_t size);
 
@@ -104,7 +106,7 @@ public:
 private:
     typedef std::shared_ptr<class serial::Serial> SerialRef;
 
-    SerialDevice(const std::string portName, const uint32_t baudRate, const Timeout timeout, const DataBits dataBits, const Parity parity, const StopBits stopBits, const FlowControl flowControl);
+    SerialDevice(const std::string& portName, uint32_t baudRate, const Timeout timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl);
 
     SerialRef mSerial;
 };

@@ -34,6 +34,20 @@ const std::vector<SerialPortRef>& SerialPort::getPorts(bool forceRefresh) {
     return sPorts;
 }
 
+SerialPortRef SerialPort::findPortByNameMatching(const std::regex& pattern, bool forceRefresh) {
+    if (forceRefresh || sPortsDirty) {
+        getPorts(forceRefresh);
+    }
+
+    for (auto port : sPorts) {
+        if (std::regex_match(port->getName(), pattern)) {
+            return port;
+        }
+    }
+
+    return nullptr;
+}
+
 const std::string SerialPort::getName() const {
     return mInfo.port;
 }
@@ -47,15 +61,15 @@ const std::string SerialPort::getHardwareIdentifier() const {
 }
 
 #pragma mark DEVICE
-SerialDeviceRef SerialDevice::create(const SerialPortRef port, const uint32_t baudRate, const Timeout timeout, const DataBits dataBits, const Parity parity, const StopBits stopBits, const FlowControl flowControl) {
+SerialDeviceRef SerialDevice::create(const SerialPortRef port, uint32_t baudRate, const Timeout timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
     return SerialDeviceRef(new SerialDevice(port->getName(), baudRate, timeout, dataBits, parity, stopBits, flowControl))->shared_from_this();
 }
 
-SerialDeviceRef SerialDevice::create(const std::string portName, const uint32_t baudRate, const Timeout timeout, const DataBits dataBits, const Parity parity, const StopBits stopBits, const FlowControl flowControl) {
+SerialDeviceRef SerialDevice::create(const std::string& portName, uint32_t baudRate, const Timeout timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
     return SerialDeviceRef(new SerialDevice(portName, baudRate, timeout, dataBits, parity, stopBits, flowControl))->shared_from_this();
 }
 
-SerialDevice::SerialDevice(const std::string portName, const uint32_t baudRate, const Timeout timeout, const DataBits dataBits, const Parity parity, const StopBits stopBits, const FlowControl flowControl) {
+SerialDevice::SerialDevice(const std::string& portName, uint32_t baudRate, const Timeout timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
     mSerial = SerialRef(new serial::Serial(portName, baudRate, timeout, static_cast<serial::bytesize_t>(dataBits), static_cast<serial::parity_t>(parity), static_cast<serial::stopbits_t>(stopBits), static_cast<serial::flowcontrol_t>(flowControl)));
 }
 
@@ -68,7 +82,7 @@ const std::string SerialDevice::getPortName() const {
     return mSerial->getPort();
 }
 
-const uint32_t SerialDevice::getBaudRate() const {
+uint32_t SerialDevice::getBaudRate() const {
     return mSerial->getBaudrate();
 }
 
@@ -76,19 +90,19 @@ const Timeout SerialDevice::getTimeout() const {
     return mSerial->getTimeout();
 }
 
-const DataBits SerialDevice::getDataBits() const {
+DataBits SerialDevice::getDataBits() const {
     return static_cast<DataBits>(mSerial->getBytesize());
 }
 
-const Parity SerialDevice::getParity() const {
+Parity SerialDevice::getParity() const {
     return static_cast<Parity>(mSerial->getParity());
 }
 
-const StopBits SerialDevice::getStopBits() const {
+StopBits SerialDevice::getStopBits() const {
     return static_cast<StopBits>(mSerial->getStopbits());
 }
 
-const FlowControl SerialDevice::getFlowControl() const {
+FlowControl SerialDevice::getFlowControl() const {
     return static_cast<FlowControl>(mSerial->getFlowcontrol());
 }
 
@@ -112,7 +126,7 @@ void SerialDevice::close() {
     mSerial->close();
 }
 
-size_t SerialDevice::availableBytes() const {
+size_t SerialDevice::getNumberOfAvailableBytes() const {
     return mSerial->available();
 }
 

@@ -79,8 +79,8 @@ private:
 
 class SerialDevice : public std::enable_shared_from_this<SerialDevice> {
 public:
-    static SerialDeviceRef create(const SerialPortRef port, uint32_t baudRate, const Timeout timeout = TimeoutDefault, DataBits dataBits = DataBits::Eight, Parity parity = Parity::None, StopBits stopBits = StopBits::One, FlowControl flowControl = FlowControl::None);
-    static SerialDeviceRef create(const std::string& portName, uint32_t baudRate, const Timeout timeout = TimeoutDefault, DataBits dataBits = DataBits::Eight, Parity parity = Parity::None, StopBits stopBits = StopBits::One, FlowControl flowControl = FlowControl::None);
+    static SerialDeviceRef create(const SerialPortRef port, uint32_t baudRate, const Timeout& timeout = TimeoutDefault, DataBits dataBits = DataBits::Eight, Parity parity = Parity::None, StopBits stopBits = StopBits::One, FlowControl flowControl = FlowControl::None);
+    static SerialDeviceRef create(const std::string& portName, uint32_t baudRate, const Timeout& timeout = TimeoutDefault, DataBits dataBits = DataBits::Eight, Parity parity = Parity::None, StopBits stopBits = StopBits::One, FlowControl flowControl = FlowControl::None);
     ~SerialDevice();
 
     const std::string getPortName() const;
@@ -96,7 +96,7 @@ public:
     void close();
 
     size_t getNumberOfAvailableBytes() const;
-    size_t readBytes(uint8_t* buffer, size_t size);
+    size_t readBytes(uint8_t* buffer, size_t maxSize);
     size_t writeBytes(const uint8_t* buffer, size_t size);
 
     void flush();
@@ -106,7 +106,7 @@ public:
 private:
     typedef std::shared_ptr<class serial::Serial> SerialRef;
 
-    SerialDevice(const std::string& portName, uint32_t baudRate, const Timeout timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl);
+    SerialDevice(const std::string& portName, uint32_t baudRate, const Timeout& timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl);
 
     SerialRef mSerial;
 };

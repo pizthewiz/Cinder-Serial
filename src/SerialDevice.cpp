@@ -61,15 +61,15 @@ const std::string SerialPort::getHardwareIdentifier() const {
 }
 
 #pragma mark DEVICE
-SerialDeviceRef SerialDevice::create(const SerialPortRef port, uint32_t baudRate, const Timeout timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
+SerialDeviceRef SerialDevice::create(const SerialPortRef port, uint32_t baudRate, const Timeout& timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
     return SerialDeviceRef(new SerialDevice(port->getName(), baudRate, timeout, dataBits, parity, stopBits, flowControl))->shared_from_this();
 }
 
-SerialDeviceRef SerialDevice::create(const std::string& portName, uint32_t baudRate, const Timeout timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
+SerialDeviceRef SerialDevice::create(const std::string& portName, uint32_t baudRate, const Timeout& timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
     return SerialDeviceRef(new SerialDevice(portName, baudRate, timeout, dataBits, parity, stopBits, flowControl))->shared_from_this();
 }
 
-SerialDevice::SerialDevice(const std::string& portName, uint32_t baudRate, const Timeout timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
+SerialDevice::SerialDevice(const std::string& portName, uint32_t baudRate, const Timeout& timeout, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
     mSerial = SerialRef(new serial::Serial(portName, baudRate, timeout, static_cast<serial::bytesize_t>(dataBits), static_cast<serial::parity_t>(parity), static_cast<serial::stopbits_t>(stopBits), static_cast<serial::flowcontrol_t>(flowControl)));
 }
 
@@ -130,8 +130,8 @@ size_t SerialDevice::getNumberOfAvailableBytes() const {
     return mSerial->available();
 }
 
-size_t SerialDevice::readBytes(uint8_t* buffer, size_t size) {
-    return mSerial->read(buffer, size);
+size_t SerialDevice::readBytes(uint8_t* buffer, size_t maxSize) {
+    return mSerial->read(buffer, maxSize);
 }
 
 size_t SerialDevice::writeBytes(const uint8_t* buffer, size_t size) {

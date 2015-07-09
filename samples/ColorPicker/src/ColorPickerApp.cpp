@@ -23,7 +23,7 @@ using namespace Cinder::Serial;
 
 // http://sean.voisen.org/blog/2011/10/breathing-led-with-arduino/
 // http://wolfr.am/5NzJsMbR
-inline float easeBrething(float t) {
+inline float easeInOutBrething(float t) {
     return (expf(sinf(t * M_PI)) - 1/M_E) * 1/(M_E-(1/M_E));
 }
 
@@ -117,7 +117,7 @@ void ColorPickerApp::cycleColorMode() {
             break;
         case ColorMode::Breath:
             mTimeline->appendTo(&mColor, Color::black(), 7.0f * timeUnit);
-            mTimeline->appendTo(&mColor, Colorf(0.0f, 0.0f, 0.0f), Colorf(1.0f, 0.0f, 0.0f), 14.0f * timeUnit, easeBrething).loop();
+            mTimeline->appendTo(&mColor, Colorf(0.0f, 0.0f, 0.0f), Colorf(1.0f, 0.0f, 0.0f), 14.0f * timeUnit, easeInOutBrething).loop();
             break;
         case ColorMode::SOS:
             mTimeline->appendTo(&mColor, Color::black(), 7.0f * timeUnit);

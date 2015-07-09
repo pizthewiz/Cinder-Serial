@@ -1,7 +1,9 @@
 
 ## NOW
-[ ] Cinder <-> Arduino sample
 [ ] Fully comment header
+[ ] Sort out README
+[ ] Test on Windows in a VM
+[ ] Handle unplug
 
 ## LATER
 [ ] SLIP encode/decode

@@ -1,6 +1,5 @@
 
 ## NOW
-- Sort out README
 - Fully comment header
 - Handle unplug
 

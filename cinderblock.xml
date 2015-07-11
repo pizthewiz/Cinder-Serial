@@ -13,6 +13,11 @@
     <supports os="macosx" />
     <supports os="msw" />
 
+    <includePath>include</includePath>
+    <includePath system="true">lib/serial/include</includePath>
+    <includePath>lib/serial/include/serial</includePath>
+    <includePath>lib/serial/include</includePath>
+
     <header>include/Cinder-Serial.h</header>
     <header>include/SerialDevice.h</header>
     <source>src/SerialDevice.cpp</source>
@@ -22,7 +27,6 @@
     <sourcePattern>lib/serial/src/impl/list_ports/*.cc</sourcePattern>
     <sourcePattern>lib/serial/src/impl/*.cc</sourcePattern>
     <sourcePattern>lib/serial/src/*.cc</sourcePattern>
-    <includePath system="true">lib/serial/include/</includePath>
 
     <copyExclude>samples</copyExclude>
 </block>

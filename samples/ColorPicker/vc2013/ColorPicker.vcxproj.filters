@@ -1,0 +1,112 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Blocks">
+      <UniqueIdentifier>{747D0EEC-DD16-45A7-A440-BA0FCD5545DE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial">
+      <UniqueIdentifier>{207E3CAE-5D9D-4863-AF4E-8906432A0C06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\include">
+      <UniqueIdentifier>{315EF321-4F33-4B2D-889D-BBB17EB130BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\src">
+      <UniqueIdentifier>{F71A364D-B274-44F4-8556-06C83E788358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\lib">
+      <UniqueIdentifier>{15A0DDF5-3DDE-4767-80B4-416ADD23CD9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\lib\serial">
+      <UniqueIdentifier>{6CA30D51-158D-4BDF-BF6E-863976C1F7E7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\lib\serial\include">
+      <UniqueIdentifier>{955E3F9C-30D9-4AC5-AB89-22F6E2FE1ECB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\lib\serial\include\serial">
+      <UniqueIdentifier>{F8E052F5-93F0-4B22-ADA7-63985800C1F3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\lib\serial\include\serial\impl">
+      <UniqueIdentifier>{10ACAB3D-8746-4C75-98D3-5788CE13EBA1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\lib\serial\src">
+      <UniqueIdentifier>{78AE793D-3EDF-49AE-A242-EEF54F601313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\lib\serial\src\impl">
+      <UniqueIdentifier>{BDE85468-A55C-4A8C-86E5-B63D6F9227A7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Serial\lib\serial\src\impl\list_ports">
+      <UniqueIdentifier>{79F7B385-318C-40F2-B1F7-D09D3876BC7B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\ColorPickerApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ColorPickerApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Cinder-Serial.h">
+      <Filter>Blocks\Serial\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\SerialDevice.h">
+      <Filter>Blocks\Serial\include</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\src\SerialDevice.cpp">
+      <Filter>Blocks\Serial\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\..\lib\serial\include\serial\impl\unix.h">
+      <Filter>Blocks\Serial\lib\serial\include\serial\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib\serial\include\serial\impl\win.h">
+      <Filter>Blocks\Serial\lib\serial\include\serial\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib\serial\include\serial\serial.h">
+      <Filter>Blocks\Serial\lib\serial\include\serial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib\serial\include\serial\v8stdint.h">
+      <Filter>Blocks\Serial\lib\serial\include\serial</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\lib\serial\src\impl\list_ports\list_ports_linux.cc">
+      <Filter>Blocks\Serial\lib\serial\src\impl\list_ports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\lib\serial\src\impl\list_ports\list_ports_osx.cc">
+      <Filter>Blocks\Serial\lib\serial\src\impl\list_ports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\lib\serial\src\impl\list_ports\list_ports_win.cc">
+      <Filter>Blocks\Serial\lib\serial\src\impl\list_ports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\lib\serial\src\impl\unix.cc">
+      <Filter>Blocks\Serial\lib\serial\src\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\lib\serial\src\impl\win.cc">
+      <Filter>Blocks\Serial\lib\serial\src\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\lib\serial\src\serial.cc">
+      <Filter>Blocks\Serial\lib\serial\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

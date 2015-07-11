@@ -9,6 +9,9 @@
 #pragma once
 
 #include "cinder/Cinder.h"
+#if defined(CINDER_MSW)
+    #pragma comment(lib, "setupapi.lib")
+#endif
 
 #include <string>
 #include <vector>

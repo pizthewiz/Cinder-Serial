@@ -8,9 +8,6 @@
 
 #include "SerialDevice.h"
 
-using namespace ci;
-using namespace ci::app;
-
 namespace Cinder { namespace Serial {
 
 std::vector<SerialPortRef> SerialPort::sPorts;

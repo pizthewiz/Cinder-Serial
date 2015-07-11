@@ -6,11 +6,17 @@
 //  Copyright 2015 Chorded Constructions. All rights reserved.
 //
 
+// curses to MSW
+#if defined(WIN32)
+    #define _USE_MATH_DEFINES
+#endif
+
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "cinder/Timeline.h"
 #include "cinder/Log.h"
+#include "cinder/CinderMath.h"
 
 #include "Cinder-Serial.h"
 
@@ -24,7 +30,7 @@ using namespace Cinder::Serial;
 // http://sean.voisen.org/blog/2011/10/breathing-led-with-arduino/
 // http://wolfr.am/5NzJsMbR
 inline float easeInOutBrething(float t) {
-    return (expf(sinf(t * M_PI)) - 1/M_E) * 1/(M_E-(1/M_E));
+    return (expf(sinf(t * M_PI)) - 1.0f / M_E) * 1.0f / (M_E - 1.0f / M_E);
 }
 
 class ColorPickerApp : public App {
@@ -57,7 +63,11 @@ void ColorPickerApp::setup() {
 
     // grab a port and create a device
     if (!ports.empty()) {
+#if defined(CINDER_MAC)
         SerialPortRef port = SerialPort::findPortByNameMatching(std::regex("\\/dev\\/cu\\.usbmodem.*"));
+#elif defined(CINDER_MSW)
+        SerialPortRef port = SerialPort::findPortByNameMatching(std::regex("COM3"));
+#endif
         if (!port) {
             port = ports.back();
         }

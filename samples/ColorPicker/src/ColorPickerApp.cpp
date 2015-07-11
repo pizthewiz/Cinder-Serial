@@ -63,11 +63,7 @@ void ColorPickerApp::setup() {
 
     // grab a port and create a device
     if (!ports.empty()) {
-#if defined(CINDER_MAC)
         SerialPortRef port = SerialPort::findPortByNameMatching(std::regex("\\/dev\\/cu\\.usbmodem.*"));
-#elif defined(CINDER_MSW)
-        SerialPortRef port = SerialPort::findPortByNameMatching(std::regex("COM3"));
-#endif
         if (!port) {
             port = ports.back();
         }

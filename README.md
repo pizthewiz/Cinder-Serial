@@ -4,8 +4,12 @@ Cross-platform serial communication CinderBlock thinly wrapping the [serial](htt
 
 ### USAGE
 ```C++
-// get all serial ports
-auto ports = SerialPort::getPorts();
+// dump all serial ports
+for (auto port : SerialPort::getPorts()) {
+    console() << port->getName() << endl;
+    console() << "descr: " << port->getDescription() << endl;
+    console() << "ident: " << port->getHardwareIdentifier() << endl;
+}
 
 // find a port
 auto port = SerialPort::findPortByNameMatching(std::regex("\\/dev\\/cu\\.usbmodem.*"));

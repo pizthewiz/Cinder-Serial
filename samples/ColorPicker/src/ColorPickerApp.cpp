@@ -94,7 +94,7 @@ void ColorPickerApp::update() {
     sendColor();
 
     uint8_t buffer[3];
-    while (mDevice->getNumberOfAvailableBytes() > 0) {
+    while (mDevice->getNumBytesAvailable() > 0) {
         size_t size = mDevice->readBytes(buffer, 3);
         // scan buffer for message when appropraitely large
         if (size == 3) {

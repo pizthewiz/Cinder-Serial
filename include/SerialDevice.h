@@ -98,7 +98,7 @@ public:
     void open();
     void close();
 
-    size_t getNumberOfAvailableBytes() const;
+    size_t getNumBytesAvailable() const;
     size_t readBytes(uint8_t* buffer, size_t maxSize);
     size_t writeBytes(const uint8_t* buffer, size_t size);
 

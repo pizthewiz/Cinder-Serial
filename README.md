@@ -19,7 +19,7 @@ auto device = SerialDevice::create(port, 115200);
 
 // read
 uint8_t inBuffer[16];
-while (device->getNumberOfAvailableBytes() > 0) {
+while (device->getNumBytesAvailable() > 0) {
     size_t size = device->readBytes(inBuffer, 16);
 }
 

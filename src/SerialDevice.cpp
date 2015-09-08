@@ -123,7 +123,7 @@ void SerialDevice::close() {
     mSerial->close();
 }
 
-size_t SerialDevice::getNumberOfAvailableBytes() const {
+size_t SerialDevice::getNumBytesAvailable() const {
     return mSerial->available();
 }
 

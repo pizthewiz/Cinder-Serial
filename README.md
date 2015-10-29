@@ -31,6 +31,8 @@ uint8_t outBuffer[5] = {
 device->writeBytes(outBuffer, 5);
 ```
 
+[SLIP](https://en.m.wikipedia.org/wiki/Serial_Line_Internet_Protocol) and [COBS](https://en.m.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing) encode / decode is available separately via the [Cinder-Encoding](https://github.com/pizthewiz/Cinder-Encoding) CinderBlock.
+
 ### GREETZ
 - [William Woodall](https://github.com/wjwwood) and [John Harrison](https://github.com/ashgti) for _the_ [serial](https://github.com/wjwwood/serial) library
 - [Christopher Baker](https://github.com/bakercp) and his [ofxSerial](https://github.com/bakercp/ofxSerial) [openFrameworks](https://github.com/openframeworks/openframeworks) addon

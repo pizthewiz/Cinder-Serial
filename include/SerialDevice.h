@@ -64,7 +64,7 @@ public:
     static const std::vector<SerialPortRef>& getPorts(bool forceRefresh = false);
     static SerialPortRef findPortByNameMatching(const std::regex& pattern, bool forceRefresh = false);
 
-    ~SerialPort() {}
+    ~SerialPort() = default;
 
     const std::string getName() const;
     const std::string getDescription() const;

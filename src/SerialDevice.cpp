@@ -45,6 +45,20 @@ SerialPortRef SerialPort::findPortByNameMatching(const std::regex& pattern, bool
     return nullptr;
 }
 
+SerialPortRef SerialPort::findPortByDescriptionMatching(const std::regex& pattern, bool forceRefresh) {
+    if (forceRefresh || sPortsDirty) {
+        getPorts(forceRefresh);
+    }
+
+    for (auto port : sPorts) {
+        if (std::regex_match(port->getDescription(), pattern)) {
+            return port;
+        }
+    }
+
+    return nullptr;
+}
+
 const std::string SerialPort::getName() const {
     return mInfo.port;
 }
@@ -71,7 +85,9 @@ SerialDevice::SerialDevice(const std::string& portName, uint32_t baudRate, const
 }
 
 SerialDevice::~SerialDevice() {
-    flushOutput();
+//#ifndef WIN32
+//  flushOutput();
+//#endif // !_WIN32
     close();
 }
 
@@ -133,6 +149,10 @@ size_t SerialDevice::readBytes(uint8_t* buffer, size_t maxSize) {
 
 size_t SerialDevice::writeBytes(const uint8_t* buffer, size_t size) {
     return mSerial->write(buffer, size);
+}
+
+size_t SerialDevice::writeString(const std::string &str) {
+    return writeBytes( (uint8_t*)str.data(), str.size());
 }
 
 void SerialDevice::flush() {

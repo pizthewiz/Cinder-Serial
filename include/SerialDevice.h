@@ -63,6 +63,7 @@ class SerialPort : public std::enable_shared_from_this<SerialPort> {
 public:
     static const std::vector<SerialPortRef>& getPorts(bool forceRefresh = false);
     static SerialPortRef findPortByNameMatching(const std::regex& pattern, bool forceRefresh = false);
+    static SerialPortRef findPortByDescriptionMatching(const std::regex& pattern, bool forceRefresh = false);
 
     ~SerialPort() = default;
 
@@ -101,6 +102,7 @@ public:
     size_t getNumBytesAvailable() const;
     size_t readBytes(uint8_t* buffer, size_t maxSize);
     size_t writeBytes(const uint8_t* buffer, size_t size);
+    size_t writeString(const std::string &str );
 
     void flush();
     void flushInput();
